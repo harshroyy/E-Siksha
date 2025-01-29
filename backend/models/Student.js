@@ -47,6 +47,11 @@ const studentSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
+    admissionNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     name: {
       type: String,
       required: true,

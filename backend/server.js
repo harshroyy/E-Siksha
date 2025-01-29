@@ -36,7 +36,7 @@ app.use("/api/teachers", teacherRoutes); // Teacher-specific routes
 app.use("/api/students", studentRoutes); // Student-specific routes
 
 // Start the Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

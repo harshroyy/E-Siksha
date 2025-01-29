@@ -37,6 +37,28 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Get teacher details (Teacher only)
+router.get("/profile", authenticateToken, async (req, res) => {
+  try {
+    // Check if the user is a teacher
+    if (req.user.role !== "teacher") {
+      return res.status(403).json({ message: "Access denied. Only teachers can view their profile." });
+    }
+
+    const teacherId = req.user.userId;
+
+    // Find the teacher
+    const teacher = await Teacher.findOne({ user: teacherId }).populate("user", "username");
+    if (!teacher) {
+      return res.status(404).json({ message: "Teacher not found" });
+    }
+
+    res.status(200).json({ message: "Teacher details fetched successfully", teacher });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching teacher details", error });
+  }
+});
+
 // Add a new student (Teacher only)
 router.post("/students", authenticateToken, async (req, res) => {
   try {
@@ -65,15 +87,29 @@ router.post("/students", authenticateToken, async (req, res) => {
       attendance,
     } = req.body;
 
+    // Check if admission number is provided
+    if (!admissionNumber) {
+      return res.status(400).json({ message: "Admission number is required" });
+    }
+
+    // Check if date of birth is provided
+    if (!dateOfBirth) {
+      return res.status(400).json({ message: "Date of birth is required" });
+    }
+
     // Check if admission number already exists
-    const existingUser = await User.findOne({ admissionNumber });
-    if (existingUser) {
+    const existingStudent = await Student.findOne({ admissionNumber });
+    if (existingStudent) {
       return res.status(400).json({ message: "Admission number already exists" });
     }
+
+    // Generate a unique username based on the admission number
+    const username = `student_${admissionNumber}`;
 
     // Create a new user with role 'student'
     const user = new User({
       admissionNumber,
+      username, // Set the username here
       dateOfBirth,
       role: "student",
     });
@@ -82,6 +118,7 @@ router.post("/students", authenticateToken, async (req, res) => {
     // Create a new student
     const student = new Student({
       user: user._id,
+      admissionNumber,
       name,
       aadharCardNumber,
       religion,
