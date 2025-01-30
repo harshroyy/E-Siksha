@@ -19,7 +19,6 @@ const connectDB = require("./conn/conn");
 connectDB();
 
 // Import Routes
-const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");
 const studentRoutes = require("./routes/studentRoutes");
@@ -30,7 +29,6 @@ app.get("/", (req, res) => {
 });
 
 // Mount Routes
-app.use("/api/users", userRoutes); // General user routes (e.g., change password, profile)
 app.use("/api/admins", adminRoutes); // Admin-specific routes
 app.use("/api/teachers", teacherRoutes); // Teacher-specific routes
 app.use("/api/students", studentRoutes); // Student-specific routes

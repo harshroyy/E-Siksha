@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Teacher = require("../models/Teacher");
 const Student = require("../models/Student");
-const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { authenticateToken } = require("./userAuth");
@@ -12,21 +11,21 @@ router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Find the user
-    const user = await User.findOne({ username, role: "teacher" });
-    if (!user) {
+    // Find the teacher
+    const teacher = await Teacher.findOne({ username });
+    if (!teacher) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
     // Check password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, teacher.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user._id, role: user.role },
+      { userId: teacher._id, role: 'teacher' },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -37,10 +36,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Get teacher details (Teacher only)
+// Get teacher profile (Teacher only)
 router.get("/profile", authenticateToken, async (req, res) => {
   try {
-    // Check if the user is a teacher
     if (req.user.role !== "teacher") {
       return res.status(403).json({ message: "Access denied. Only teachers can view their profile." });
     }
@@ -48,7 +46,7 @@ router.get("/profile", authenticateToken, async (req, res) => {
     const teacherId = req.user.userId;
 
     // Find the teacher
-    const teacher = await Teacher.findOne({ user: teacherId }).populate("user", "username");
+    const teacher = await Teacher.findById(teacherId);
     if (!teacher) {
       return res.status(404).json({ message: "Teacher not found" });
     }
@@ -62,14 +60,13 @@ router.get("/profile", authenticateToken, async (req, res) => {
 // Add a new student (Teacher only)
 router.post("/students", authenticateToken, async (req, res) => {
   try {
-    // Check if the user is a teacher
     if (req.user.role !== "teacher") {
       return res.status(403).json({ message: "Access denied. Only teachers can add students." });
     }
 
     const {
       admissionNumber,
-      dateOfBirth,
+      dateOfBirth, // Ensure this is included
       name,
       aadharCardNumber,
       religion,
@@ -87,14 +84,9 @@ router.post("/students", authenticateToken, async (req, res) => {
       attendance,
     } = req.body;
 
-    // Check if admission number is provided
-    if (!admissionNumber) {
-      return res.status(400).json({ message: "Admission number is required" });
-    }
-
-    // Check if date of birth is provided
-    if (!dateOfBirth) {
-      return res.status(400).json({ message: "Date of birth is required" });
+    // Validate required fields
+    if (!admissionNumber || !dateOfBirth || !name || !aadharCardNumber || !religion || !fathersName || !fathersNumber || !mothersName || !gender || !studentClass || !section || !rollNumber || !address || !academicYear || !dateOfAdmission || !mobileNumber || !attendance) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
     // Check if admission number already exists
@@ -103,22 +95,10 @@ router.post("/students", authenticateToken, async (req, res) => {
       return res.status(400).json({ message: "Admission number already exists" });
     }
 
-    // Generate a unique username based on the admission number
-    const username = `student_${admissionNumber}`;
-
-    // Create a new user with role 'student'
-    const user = new User({
-      admissionNumber,
-      username, // Set the username here
-      dateOfBirth,
-      role: "student",
-    });
-    await user.save();
-
     // Create a new student
     const student = new Student({
-      user: user._id,
       admissionNumber,
+      dateOfBirth: new Date(dateOfBirth), // Ensure dateOfBirth is a valid Date object
       name,
       aadharCardNumber,
       religion,
@@ -131,7 +111,7 @@ router.post("/students", authenticateToken, async (req, res) => {
       rollNumber,
       address,
       academicYear,
-      dateOfAdmission,
+      dateOfAdmission: new Date(dateOfAdmission), // Ensure dateOfAdmission is a valid Date object
       mobileNumber,
       attendance,
     });
@@ -139,14 +119,14 @@ router.post("/students", authenticateToken, async (req, res) => {
 
     res.status(201).json({ message: "Student created successfully", student });
   } catch (error) {
-    res.status(500).json({ message: "Error creating student", error });
+    console.error("Error creating student:", error); // Log the error
+    res.status(500).json({ message: "Error creating student", error: error.message });
   }
 });
 
 // Update student information (Teacher only)
 router.put("/students/:id", authenticateToken, async (req, res) => {
   try {
-    // Check if the user is a teacher
     if (req.user.role !== "teacher") {
       return res.status(403).json({ message: "Access denied. Only teachers can update students." });
     }
@@ -167,10 +147,15 @@ router.put("/students/:id", authenticateToken, async (req, res) => {
       dateOfAdmission,
       mobileNumber,
       attendance,
+      dateOfBirth, // Ensure this is included
     } = req.body;
     const studentId = req.params.id;
 
-    // Find and update the student
+    // Validate required fields
+    if (!name || !aadharCardNumber || !religion || !fathersName || !fathersNumber || !mothersName || !gender || !studentClass || !section || !rollNumber || !address || !academicYear || !dateOfAdmission || !mobileNumber || !attendance || !dateOfBirth) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
     const updatedStudent = await Student.findByIdAndUpdate(
       studentId,
       {
@@ -186,9 +171,10 @@ router.put("/students/:id", authenticateToken, async (req, res) => {
         rollNumber,
         address,
         academicYear,
-        dateOfAdmission,
+        dateOfAdmission: new Date(dateOfAdmission), // Ensure dateOfAdmission is a valid Date object
         mobileNumber,
         attendance,
+        dateOfBirth: new Date(dateOfBirth), // Ensure dateOfBirth is a valid Date object
       },
       { new: true }
     );
@@ -199,22 +185,22 @@ router.put("/students/:id", authenticateToken, async (req, res) => {
 
     res.status(200).json({ message: "Student updated successfully", updatedStudent });
   } catch (error) {
-    res.status(500).json({ message: "Error updating student", error });
+    console.error("Error updating student:", error); // Log the error
+    res.status(500).json({ message: "Error updating student", error: error.message });
   }
 });
+
 
 // View student details (Teacher only)
 router.get("/students/:id", authenticateToken, async (req, res) => {
   try {
-    // Check if the user is a teacher
     if (req.user.role !== "teacher") {
       return res.status(403).json({ message: "Access denied. Only teachers can view student details." });
     }
 
     const studentId = req.params.id;
 
-    // Find the student
-    const student = await Student.findById(studentId).populate("user", "admissionNumber dateOfBirth");
+    const student = await Student.findById(studentId);
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
@@ -228,12 +214,11 @@ router.get("/students/:id", authenticateToken, async (req, res) => {
 // View all students (Teacher only)
 router.get("/students", authenticateToken, async (req, res) => {
   try {
-    // Check if the user is a teacher
     if (req.user.role !== "teacher") {
       return res.status(403).json({ message: "Access denied. Only teachers can view students." });
     }
 
-    const students = await Student.find().populate("user", "admissionNumber dateOfBirth");
+    const students = await Student.find();
     res.status(200).json({ message: "Students fetched successfully", students });
   } catch (error) {
     res.status(500).json({ message: "Error fetching students", error });

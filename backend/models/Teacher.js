@@ -3,9 +3,13 @@ const mongoose = require("mongoose");
 
 const teacherSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
       required: true,
     },
     name: {
@@ -13,10 +17,9 @@ const teacherSchema = new mongoose.Schema(
       required: true,
     },
     avatar: {
-        type: String,
-        default:
-          "https://e7.pngegg.com/pngimages/439/19/png-clipart-avatar-user-profile-icon-women-wear-frock-face-holidays-thumbnail.png",
-      },
+      type: String,
+      default: "https://e7.pngegg.com/pngimages/439/19/png-clipart-avatar-user-profile-icon-women-wear-frock-face-holidays-thumbnail.png",
+    },
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
