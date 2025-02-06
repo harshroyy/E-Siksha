@@ -1,5 +1,6 @@
 import React from "react";
-import "./Footer.jsx"
+import "./Footer.css";
+
 function Footer() {
   return (
     <footer className="py-8 bg-gradient-to-r from-purple-100 to-pink-100">

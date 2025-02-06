@@ -1,144 +1,121 @@
-/* Header Container */
+/* Header.css */
 .containerofheader {
-  margin-bottom: 4rem;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e5e7eb;
-  height: 4rem; /* Define the height of the header */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-}
-
-/* Header Flex Container */
-#header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%; /* Use 100% of the header's height */
-  padding: 0 1.5rem;
-}
-
-/* Logo Container */
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  height: 100%; /* Ensure the container takes the full height of the header */
-}
-
-/* Logo Styling */
-.logo {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* School Name */
-.hero-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #4b5563;
-  padding-top: 1rem;
-  line-height: 1; /* Adjust line height for better vertical alignment */
-  transition: color 0.3s ease;
-}
-
-/* Navigation Menu */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-/* Navigation Items */
-.nav-item {
-  position: relative;
-}
-
-/* Navigation Links */
-.nav-link {
-  font-size: 1rem;
-  color: #4b5563;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #9333ea;
-}
-
-/* Underline Animation */
-.nav-underline {
-  position: absolute;
-  bottom: -0.25rem;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #9333ea;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-.nav-item:hover .nav-underline {
-  width: 100%;
-  left: 0;
-}
-
-/* Ensure the home section has enough padding to avoid overlapping with the header */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  padding-top: 4rem; /* Match this with the header height */
-  overflow: hidden;
-  background-image: linear-gradient(to bottom, #f3e8ff, #ffffff, #f3e8ff);
-}
-
-/* Other styles remain unchanged */
-.hero-content {
-  max-width: 48rem;
-}
-
-.hero-title {
-  margin-bottom: 1.5rem;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  background-image: linear-gradient(to right, #9333ea, #db2777);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero-button {
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  background-image: linear-gradient(to right, #9333ea, #db2777);
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.hero-button:hover {
-  background-image: linear-gradient(to right, #7e22ce, #be185d);
-}
-
-.hero-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.hero-bottom-bg {
-  height: 8rem;
-  background-color: #90B644;
-  border-radius: 100% 100% 0 0;
-}
+    margin-bottom: 4.5rem;
+  }
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    height: 4.5rem;
+  }
+  
+  #header {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  
+  .logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .school-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .school-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a237e;
+    margin: 0;
+  }
+  
+  .school-location {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  
+  .nav-item {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+  
+  .nav-link {
+    font-size: 0.95rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+  }
+  
+  .nav-link:hover {
+    color: #1a237e;
+  }
+  
+  .nav-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #1a237e;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-item:hover .nav-underline {
+    width: 100%;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .nav {
+      gap: 1.5rem;
+    }
+    
+    .school-name {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      height: 4rem;
+    }
+  
+    .school-location {
+      display: none;
+    }
+  
+    .nav {
+      display: none; /* You might want to implement a mobile menu */
+    }
+  }

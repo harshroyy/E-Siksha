@@ -1,16 +1,10 @@
 import React from "react";
-import { motion } from "framer-motion";
-import "../Header/Header.css"
+import './Header.css';
 
 function Header() {
   return (
     <div className="containerofheader">
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="header"
-      >
+      <header className="header">
         <div id="header">
           {/* Logo & School Name */}
           <div className="logo-container">
@@ -27,12 +21,9 @@ function Header() {
 
           {/* Navigation Menu */}
           <nav className="nav">
-            {["Home", "About Us", "Login"].map((item, i) => (
-              <motion.div
+            {["Home", "About Us", "Login"].map((item) => (
+              <div
                 key={item}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
                 className="nav-item"
               >
                 <a
@@ -42,11 +33,11 @@ function Header() {
                   {item}
                 </a>
                 <span className="nav-underline" />
-              </motion.div>
+              </div>
             ))}
           </nav>
         </div>
-      </motion.header>
+      </header>
     </div>
   );
 }

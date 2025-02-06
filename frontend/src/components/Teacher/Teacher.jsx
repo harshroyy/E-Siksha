@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import { motion } from "framer-motion";
-import "./Teachers.css";
+import "./Teacher.css";
 
 const teachers = [
   { name: "Mr. Rajesh Kumar", subject: "Mathematics", qualification: "M.Sc, B.Ed", photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Outdoors-man-portrait_%28cropped%29.jpg/1200px-Outdoors-man-portrait_%28cropped%29.jpg" },
