@@ -6,20 +6,20 @@ function Hero() {
     <div className="h-[90vh] flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-blue-100 to-white">
       {/* Text Content */}
       <div className="w-full mb-12 md:mb-0 lg:w-1/2 flex flex-col items-center lg:items-start justify-center px-6 lg:px-12">
-        <h1 className="mt-2 text-2xl lg:text-3xl font-semibold text-blue-600 text-center lg:text-left transition duration-300">
+        <h1 className="mt-2 text-2xl lg:text-3xl font-semibold text-blue-600 text-center lg:text-left transition duration-300" style={{ fontFamily: 'Cormorant, sans-serif' }}>
           Welcome to
         </h1>
-        <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn">
+        <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn" style={{ fontFamily: 'Cormorant, sans-serif' }}>
           UCHCHA MADHYAMIK
         </h1>
         {/* <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn">
           MADHYAMIK
         </h1> */}
-        <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn">
+        <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn"style={{ fontFamily: 'Cormorant, sans-serif' }}>
           VIDYALAYA
         </h1>
 
-        <p className="mt-2 text-[1.75rem] font-semibold text-blue-600 text-center lg:text-left transition duration-300">
+        <p className="mt-2 text-[1.75rem] font-semibold text-blue-600 text-center lg:text-left transition duration-300"style={{ fontFamily: 'Cormorant, sans-serif' }}>
           NURJAMAPUR
         </p>
 

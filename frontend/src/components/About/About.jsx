@@ -1,60 +1,66 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
 
 const AboutUs = () => {
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end start"],
-    layoutEffect: false, // Ensures smooth animation
-  });
-
-  // Framer Motion Animations
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-
   return (
-    <section
-      className="py-20 mt-16 bg-gradient-to-b from-purple-100 via-white to-white relative"
-      ref={targetRef}
-    >
-      <div className="container mx-auto px-4 text-center">
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500 mb-12"
-        >
-          ABOUT US
-        </motion.h2>
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              About Our School
+            </h2>
+            <div className="w-24 h-1 bg-purple-600 mx-auto"></div>
+          </div>
 
-        {/* Content Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="max-w-2xl mx-auto"
-        >
-          {/* Animated Lines */}
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ width: "0%" }}
-              whileInView={{ width: "100%" }}
-              transition={{ delay: i * 0.2 }}
-              className="h-[2px] border-t-2 border-dashed border-blue-200 my-2"
-            />
-          ))}
+          {/* Content Container */}
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Left Section: Image */}
+            <div className="w-full md:w-1/2">
+              <div className="relative">
+                <div className="absolute -top-4 -left-4 w-full h-full bg-purple-200 rounded-lg"></div>
+                <img
+                  src="/about-us-image.jpg"
+                  alt="About Us"
+                  className="relative w-full h-auto rounded-lg shadow-xl object-cover"
+                  style={{ minHeight: '400px' }}
+                />
+              </div>
+            </div>
 
-          {/* About Us Text */}
-          <motion.p
-            style={{ opacity, scale }}
-            className="text-gray-600 text-sm md:text-base mt-6"
-          >
-            Our school provides a nurturing environment for students to grow,
-            learn, and achieve their potential. We focus on holistic education
-            and fostering creativity to prepare students for their future.
-          </motion.p>
-        </motion.div>
+            {/* Right Section: Text */}
+            <div className="w-full md:w-1/2 space-y-6">
+              <h3 className="text-2xl md:text-3xl font-semibold text-gray-900">
+                Nurturing Minds, Shaping Futures
+              </h3>
+              
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Our school provides a nurturing environment where every student's potential
+                is recognized and cultivated. We believe in creating an atmosphere that
+                encourages curiosity, creativity, and critical thinking.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <p className="text-gray-700">Holistic Educational Approach</p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <p className="text-gray-700">Experienced Faculty Members</p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                  <p className="text-gray-700">State-of-the-art Facilities</p>
+                </div>
+              </div>
+
+              <button className="mt-8 px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out shadow-md">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ const Loginoption = () => {
     <section className="bg-white py-10 mt-6" id="loginsection">
       <div className="container mx-auto px-4 text-center">
         {/* Section Title */}
-        <h2 className="text-3xl text-gray-400 md:text-3xl font-semibold text-gray-800 mb-14 tracking-wide">
+        <h2 className="text-3xl text-gray-300 md:text-3xl font-semibold text-gray-800 mb-14 tracking-wide">
           LOGIN 
         </h2>
 
