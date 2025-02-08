@@ -1,30 +1,36 @@
 import React from "react";
 import { User, Users, Headphones } from "lucide-react";
-import "../Login/Login.css";
 
 const Loginoption = () => {
   return (
-    <section className="login-options" id="loginsection">
-      <div className="container px-4 mx-auto">
-        <h2 className="about-us-title">
-          LOGIN OPTIONS
+    <section className="bg-white py-10 mt-6" id="loginsection">
+      <div className="container mx-auto px-4 text-center">
+        {/* Section Title */}
+        <h2 className="text-3xl text-gray-400 md:text-3xl font-semibold text-gray-800 mb-14 tracking-wide">
+          LOGIN 
         </h2>
 
-        <div className="login-cards">
+        {/* Login Cards */}
+        <div className="flex flex-wrap justify-center gap-20">
           {[
-            { title: "Teacher Login", icon: User },
-            { title: "Student Login", icon: Users },
-            { title: "Admin Login", icon: Headphones },
+            { title: "Teacher ", icon: User },
+            { title: "Student ", icon: Users },
+            { title: "Admin ", icon: Headphones },
           ].map((item) => (
             <div
               key={item.title}
-              className="login-card"
+              className="bg-white p-6 rounded-xl shadow-lg w-[230px] text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              <a href={`#${item.title.toLowerCase().replace(" ", "-")}`}>
-                <div className="login-icon">
-                  <item.icon className="icon" />
+              <a
+                href={`#${item.title.toLowerCase().replace(" ", "-")}`}
+                className="flex flex-col items-center no-underline"
+              >
+                <div className="mb-4 bg-blue-100 p-3 rounded-full">
+                  <item.icon className="w-12 h-12 text-blue-500" />
                 </div>
-                <span className="login-title">{item.title}</span>
+                <span className="text-lg font-semibold text-gray-700">
+                  {item.title}
+                </span>
               </a>
             </div>
           ))}

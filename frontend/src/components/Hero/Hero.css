@@ -1,4 +1,3 @@
-/*  */
 .hero-image-container {
   position: relative;
   width: 100%;
@@ -13,10 +12,12 @@
 /* Hero image */
 .hero-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the image */
+  width: 80%; /* Adjust this value to control the image size */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure the image doesn't exceed the container width */
   object-fit: cover; /* Ensures the image fills the container and maintains aspect ratio */
 }
 

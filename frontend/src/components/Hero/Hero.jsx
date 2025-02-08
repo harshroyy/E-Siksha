@@ -1,28 +1,50 @@
-// src/components/Hero/Hero.jsx
 import React from "react";
-import "./Hero.css"; // You might need to create a Hero.css file
-
-const images = [
-  {
-    url: "https://media.istockphoto.com/id/171306436/photo/red-brick-high-school-building-exterior.jpg?s=612x612&w=0&k=20&c=vksDyCVrfCpvb9uk4-wcBYu6jbTZ3nCOkGHPSgNy-L0="
-  },
-];
+import { Link } from "react-router-dom"; // If using React Router
 
 function Hero() {
-  const imageUrl = images[0].url;
-  const imageText = images[0].text;
-  const imageCaption = images[0].caption;
-
   return (
-    <div className="min-h-screen bg-white">
-      <div className="hero-image-container">
-        <img src={imageUrl} alt={imageText} className="hero-image" />
-        <div className="hero-caption">
-          <h5>{imageText}</h5>
-          <p>{imageCaption}</p>
-        </div>
+    <div className="h-[90vh] flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-blue-100 to-white">
+      {/* Text Content */}
+      <div className="w-full mb-12 md:mb-0 lg:w-1/2 flex flex-col items-center lg:items-start justify-center px-6 lg:px-12">
+        <h1 className="mt-2 text-2xl lg:text-3xl font-semibold text-blue-600 text-center lg:text-left transition duration-300">
+          Welcome to
+        </h1>
+        <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn">
+          UCHCHA MADHYAMIK
+        </h1>
+        {/* <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn">
+          MADHYAMIK
+        </h1> */}
+        <h1 className="text-4xl lg:text-6xl font-bold text-blue-800 text-center lg:text-left animate-fadeIn">
+          VIDYALAYA
+        </h1>
+
+        <p className="mt-2 text-[1.75rem] font-semibold text-blue-600 text-center lg:text-left transition duration-300">
+          NURJAMAPUR
+        </p>
+
+        <p className="mt-2 mb-4 md:mb-0 lg:text-2l italic text-gray-500 lg:text-left">
+          "Education is the most powerful weapon which you can use to change the world"
+        </p>
+
+        <Link
+          to="/admissions" // Update the link destination
+          className="mt-2 text-blue-600 bg-white text-xl lg:text-2xl font-semibold border border-white px-12 py-3 hover:bg-blue-700 rounded-full transition duration-300 shadow-lg no-underline"
+        >
+          Explore
+        </Link>
+
       </div>
-      {/* Other components that should be part of the Hero can stay here */}
+
+      {/* Image Section */}
+      <div className="w-full lg:w-1/2 h-auto flex items-center justify-center lg:pr-12 p-4">
+        <img
+          src="/heroimg.png" // Replace with your image path
+          alt="School Hero Image"
+          className="w-full h-auto lg:w-auto lg:h-auto object-cover"
+          style={{ maxHeight: '120%', maxWidth: '120%', objectFit: 'contain' }}
+        />
+      </div>
     </div>
   );
 }
