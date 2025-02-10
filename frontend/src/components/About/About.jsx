@@ -1,4 +1,5 @@
 import React from "react";
+import "./About.css";
 
 const AboutUs = () => {
   return (
@@ -7,25 +8,21 @@ const AboutUs = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-3xl text-gray-500 mb-4">
               About Our School
             </h2>
-            <div className="w-24 h-1 bg-purple-600 mx-auto"></div>
           </div>
 
           {/* Content Container */}
-          <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="flex flex-col md:flex-row items-center gap-16">
             {/* Left Section: Image */}
-            <div className="w-full md:w-1/2">
-              <div className="relative">
-                <div className="absolute -top-4 -left-4 w-full h-full bg-purple-200 rounded-lg"></div>
-                <img
-                  src="/about-us-image.jpg"
-                  alt="About Us"
-                  className="relative w-full h-auto rounded-lg shadow-xl object-cover"
-                  style={{ minHeight: '400px' }}
-                />
-              </div>
+            <div className="w-full md:w-1/2 ">
+              <img
+                src="/aboutimg.png"
+                alt="About Us"
+                className="w-full h-auto rounded-lg  object-cover"
+                style={{ minHeight: '400px' }}
+              />
             </div>
 
             {/* Right Section: Text */}
@@ -35,27 +32,10 @@ const AboutUs = () => {
               </h3>
               
               <p className="text-gray-700 text-lg leading-relaxed">
-                Our school provides a nurturing environment where every student's potential
-                is recognized and cultivated. We believe in creating an atmosphere that
-                encourages curiosity, creativity, and critical thinking.
+                Our school provides a nurturing environment where every student's potential is recognized and cultivated. We believe in creating an atmosphere that encourages curiosity, creativity, and critical thinking. Our holistic educational approach, experienced faculty members, and state-of-the-art facilities ensure that students receive the best possible education to prepare them for the future.
               </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                  <p className="text-gray-700">Holistic Educational Approach</p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                  <p className="text-gray-700">Experienced Faculty Members</p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                  <p className="text-gray-700">State-of-the-art Facilities</p>
-                </div>
-              </div>
 
-              <button className="mt-8 px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out shadow-md">
+              <button className="mt-8 px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-800 transition duration-300 ease-in-out shadow-md">
                 Learn More
               </button>
             </div>

@@ -1,32 +1,3 @@
-.about-us {
-    padding: 5rem 0;
-    background-image: linear-gradient(to bottom, #f3e8ff, #ffffff);
-  }
-  
-  .about-us-title {
-    margin-bottom: 3rem;
-    font-size: 1.875rem;
-    font-weight: 700;
-    text-align: center;
-    background-image: linear-gradient(to right, #9333ea, #db2777);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  
-  .about-us-content {
-    max-width: 32rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .about-us-line {
-    height: 2px;
-    border-top: 2px dashed #e0e7ff;
-    margin: 0.5rem 0;
-  }
-  
-  .about-us-text {
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
+body {
+  overflow-x: hidden;
+}

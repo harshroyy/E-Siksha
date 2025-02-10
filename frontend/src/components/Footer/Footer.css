@@ -1,10 +1,20 @@
-.footer {
-    padding: 2rem 0;
-    background-image: linear-gradient(to right, #ede9fe, #fbcfe8);
-  }
-  
-  .footer-text {
-    text-align: center;
-    color: #4c1d95;
-    font-size: 0.875rem;
-  }
+/* Footer Styles */
+footer {
+  font-family: 'Arial', sans-serif; /* Use a clean font */
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline; /* Optional hover effect */
+}
+
+footer i {
+  transition: transform 0.3s ease-in-out;
+}
+
+footer i:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}

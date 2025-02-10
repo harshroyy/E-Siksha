@@ -12,7 +12,7 @@ function Header() {
               alt="Logo"
               className="w-[3.5rem] h-[3.5rem] rounded-md object-cover"
             />
-            <span className="text-3xl font-bold text-blue-500 px-2 rounded" style={{ fontFamily: 'Cormorant, sans-serif' }}>
+            <span className="text-3xl font-bold text-blue-800 px-2 rounded" style={{ fontFamily: 'Cormorant, sans-serif' }}>
               E-Siksha
             </span>
           </div>
