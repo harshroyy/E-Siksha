@@ -1,0 +1,98 @@
+.teacher-section {
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f9f9f9;
+}
+
+.teachers-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teacher-slide {
+  display: flex;
+  gap: 15px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.teacher-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 160px;
+  transition: transform 0.3s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-5px);
+}
+
+.teacher-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.teacher-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+.teacher-subject {
+  font-size: 14px;
+  color: #666;
+}
+
+.teacher-qualification {
+  font-size: 12px;
+  color: #888;
+}
+
+.carousel-btn {
+  background: #007bff;
+  border: none;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: #0056b3;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+  left: -40px;
+}
+
+.next {
+  right: -40px;
+}
+
