@@ -22,7 +22,12 @@ const teacherSlides = Array.from({ length: Math.ceil(teachers.length / chunkSize
 
 const Teacher = () => {
   return (
-    <div className="w-full bg-[#E8F9FF] py-16">
+    <div
+      className="w-full py-16"
+      style={{
+        background: "linear-gradient(135deg, #E8F9FF, #B2EBF2)", // Gradient background
+      }}
+    >
       <section className="text-center">
         <div className="container px-4 mx-auto">
           {/* Header Section */}

@@ -6,24 +6,18 @@ function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md h-[4.5rem]">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center h-full px-2 md:px-6">
           {/* Logo & School Name */}
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-2 md:gap-3 h-full"style={{ marginLeft: '-2rem' }}>
             <img
-              src="logo.png"
+              src="logo3.png"
               alt="Logo"
-              className="w-[3.5rem] h-[3.5rem] rounded-md object-cover"
+              className="mt-2 w-[9rem] h-[9rem] rounded-md object-cover"
             />
-            <span className="text-3xl font-bold text-blue-800 px-2 rounded" style={{ fontFamily: 'Cormorant, sans-serif' }}>
-              E-Siksha
-            </span>
           </div>
 
           {/* Navigation Menu */}
           <nav className="hidden md:flex items-center gap-16">
             {["Home", "About Us"].map((item) => (
-              <div
-                key={item}
-                className="relative group py-2"
-              >
+              <div key={item} className="relative group py-2">
                 <a
                   href={`#${item.toLowerCase().replace(" ", "-")}`}
                   className="text-m font-medium text-gray-800 transition hover:text-[#1a237e] tracking-wide no-underline"
