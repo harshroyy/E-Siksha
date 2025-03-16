@@ -51,7 +51,7 @@ function Hero() {
 
           <Link
             to="/admissions"
-            className="mt-8 inline-block px-12 py-3 text-blue-800 bg-white text-xl font-semibold rounded-full hover:bg-blue-700 hover:text-white transition duration-300 shadow-lg"
+            className="mt-8 inline-block px-12 py-3 bg-white text-[#3E3E51] text-xl font-semibold rounded-full border-2 border-transparent hover:border-white hover:bg-[#3E3E51] hover:text-white transition-all duration-300 shadow-lg"
           >
             Explore
           </Link>
