@@ -25,7 +25,7 @@ const Teacher = () => {
     <div
       className="w-full py-16"
       style={{
-        backgroundColor: "#f8f8ff", // Background color
+        backgroundColor: "#3E3E51", // Background color
       }}
     >
       <section className="text-center">
@@ -37,10 +37,10 @@ const Teacher = () => {
             transition={{ duration: 0.6 }}
             className="mb-12 "
           >
-            <h2 className="text-4xl text-gray-500 mb-4">
+            <h2 className="text-4xl text-gray-100 mb-4">
               Meet Our Expert Teachers
             </h2>
-            <p className="text-gray-500 italic max-w-3xl mx-auto">
+            <p className="text-gray-300 italic max-w-3xl mx-auto">
               Our highly qualified and passionate educators are here to guide students toward academic excellence.
             </p>
           </motion.div>
@@ -52,12 +52,12 @@ const Teacher = () => {
             interval={4000}
             className="max-w-7xl mx-auto"
             prevIcon={
-              <span className="carousel-control-prev-icon text-3xl bg-[#93C5FD] text-white rounded-xl p-2 shadow-lg">
+              <span className="carousel-control-prev-icon text-3xl bg-[#3E3E51] text-white rounded-xl p-2 shadow-lg">
                 <i className="fas fa-chevron-left"></i>
               </span>
             }
             nextIcon={
-              <span className="carousel-control-next-icon text-3xl bg-[#93C5FD] text-white rounded-xl p-2 shadow-lg">
+              <span className="carousel-control-next-icon text-3xl bg-[#3E3E51] text-white rounded-xl p-2 shadow-lg">
                 <i className="fas fa-chevron-right"></i>
               </span>
             }

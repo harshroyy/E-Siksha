@@ -12,7 +12,7 @@ function Hero() {
       }}
     >
       {/* Black Overlay */}
-      <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div className="absolute inset-0 bg-black opacity-40"></div>
 
       {/* Text Content */}
       <div className="relative container mx-auto px-6 lg:px-16">

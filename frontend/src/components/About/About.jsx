@@ -3,12 +3,12 @@ import "./About.css";
 
 const AboutUs = () => {
   return (
-    <section className="py-24" style={{ backgroundColor: '#F8F8FF' }}>
+    <section className="py-24" style={{ backgroundColor: '#3E3E51' }}>
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-3xl text-gray-500 mb-4">
+            <h2 className="text-3xl md:text-3xl text-gray-100 mb-4">
               About Our School
             </h2>
           </div>
@@ -27,11 +27,11 @@ const AboutUs = () => {
 
             {/* Right Section: Text */}
             <div className="w-full md:w-1/2 space-y-6">
-              <h3 className="text-2xl md:text-3xl font-semibold text-gray-900">
+              <h3 className="text-2xl md:text-3xl font-semibold text-gray-200">
                 Nurturing Minds, Shaping Futures
               </h3>
               
-              <p className="text-gray-700 text-lg leading-relaxed">
+              <p className="text-gray-300 text-lg leading-relaxed">
                 Our school provides a nurturing environment where every student's potential is recognized and cultivated. We believe in creating an atmosphere that encourages curiosity, creativity, and critical thinking. Our holistic educational approach, experienced faculty members, and state-of-the-art facilities ensure that students receive the best possible education to prepare them for the future.
               </p>
 
