@@ -1,20 +1,66 @@
-/* Footer Styles */
-footer {
-  font-family: 'Arial', sans-serif; /* Use a clean font */
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 28px;
+  width: 100%;
+  padding: 20px 0;
 }
 
-footer a {
+.social-icon {
+  display: flex;  /* Changed from inline-flex */
+  justify-content: center;  /* Added */
+  align-items: center;  /* Added */
+  width: 60px;
+  height: 60px;
   text-decoration: none;
+  font-size: 25px;
+  outline: 2px solid white;
+  border-radius: 50%;
+  transition-property: outline-offset, outline-color, background-color;
+  transition-duration: 0.25s;
+  color: white;
 }
 
-footer a:hover {
-  text-decoration: underline; /* Optional hover effect */
+/* Rest of your existing CSS remains the same */
+
+.social-icon:hover {
+  outline-offset: 4px;
 }
 
-footer i {
-  transition: transform 0.3s ease-in-out;
+.social-icon i {
+  margin: auto;
 }
 
-footer i:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
+.icon-instagram:hover {
+  background-color: red;
+  outline-color: red;
+}
+
+.icon-twitter:hover {
+  background-color: blue;
+  outline-color: blue;
+}
+
+.icon-github:hover {
+  background-color: skyblue;
+  outline-color: skyblue;
+}
+
+.icon-codepen:hover {
+  background-color: violet;
+  outline-color: violet;
+}
+
+.social-icon:hover i {
+  animation: shake 0.25s;
+}
+
+@keyframes shake {
+  10% {
+    transform: rotate(15deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
 }

@@ -3,7 +3,7 @@ import "./About.css";
 
 const AboutUs = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24" style={{ backgroundColor: '#F8F8FF' }}>
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -16,11 +16,11 @@ const AboutUs = () => {
           {/* Content Container */}
           <div className="flex flex-col md:flex-row items-center gap-16">
             {/* Left Section: Image */}
-            <div className="w-full md:w-1/2 ">
+            <div className="w-full md:w-1/2">
               <img
                 src="/aboutimg.png"
                 alt="About Us"
-                className="w-full h-auto rounded-lg  object-cover"
+                className="w-full h-auto rounded-lg object-cover"
                 style={{ minHeight: '400px' }}
               />
             </div>

@@ -25,7 +25,7 @@ const Teacher = () => {
     <div
       className="w-full py-16"
       style={{
-        background: "linear-gradient(135deg, #E8F9FF, #B2EBF2)", // Gradient background
+        backgroundColor: "#f8f8ff", // Background color
       }}
     >
       <section className="text-center">

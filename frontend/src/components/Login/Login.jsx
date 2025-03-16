@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -65,8 +66,12 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-6">
-      <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
+    <div 
+      className="h-screen w-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: 'url("https://imgur.com/pdG9xB1.jpg")' }}
+    >
+      {/* Login form container */}
+      <div className="w-full max-w-lg bg-white shadow-2xl rounded-lg p-8">
         <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
           Login to Your Account
         </h2>

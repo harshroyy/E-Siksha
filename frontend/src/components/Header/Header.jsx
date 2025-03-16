@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className="mb-[4.5rem]">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md h-[4.5rem]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#F8F8FF] shadow-md h-[4.5rem]">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center h-full px-2 md:px-6">
           {/* Logo & School Name */}
           <Link to="/" className="flex items-center gap-2 md:gap-3 h-full" style={{ marginLeft: '-2rem' }}>
