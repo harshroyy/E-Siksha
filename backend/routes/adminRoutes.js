@@ -75,12 +75,12 @@ router.post("/teachers", authenticateToken, async (req, res) => {
       return res.status(403).json({ message: "Access denied. Only admins can add teachers." });
     }
 
-    const { username, password, name, gender, subjectSpecialization, contactNumber } = req.body;
+    const { username, password, name, avatar, gender, dateOfBirth, aadharNumber, appointedSubject, classAppointed, dateOfJoining, contactNumber } = req.body;
 
-    // Check if username already exists
-    const existingTeacher = await Teacher.findOne({ username });
+    // Check if username or aadharNumber already exists
+    const existingTeacher = await Teacher.findOne({ $or: [{ username }, { aadharNumber }] });
     if (existingTeacher) {
-      return res.status(400).json({ message: "Username already exists" });
+      return res.status(400).json({ message: "Username or Aadhar Number already exists" });
     }
 
     // Hash the password
@@ -91,8 +91,13 @@ router.post("/teachers", authenticateToken, async (req, res) => {
       username,
       password: hashedPassword,
       name,
+      avatar, // Include avatar field
       gender,
-      subjectSpecialization,
+      dateOfBirth,
+      aadharNumber,
+      appointedSubject,
+      classAppointed,
+      dateOfJoining,
       contactNumber,
     });
     await teacher.save();
@@ -110,12 +115,12 @@ router.put("/teachers/:id", authenticateToken, async (req, res) => {
       return res.status(403).json({ message: "Access denied. Only admins can update teachers." });
     }
 
-    const { name, gender, subjectSpecialization, contactNumber } = req.body;
+    const { name, avatar, gender, dateOfBirth, aadharNumber, appointedSubject, classAppointed, dateOfJoining, contactNumber } = req.body;
     const teacherId = req.params.id;
 
     const updatedTeacher = await Teacher.findByIdAndUpdate(
       teacherId,
-      { name, gender, subjectSpecialization, contactNumber },
+      { name, avatar, gender, dateOfBirth, aadharNumber, appointedSubject, classAppointed, dateOfJoining, contactNumber },
       { new: true }
     );
 

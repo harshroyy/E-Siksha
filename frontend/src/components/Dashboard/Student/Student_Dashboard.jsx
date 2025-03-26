@@ -10,49 +10,48 @@ function Student_Dashboard() {
   const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
 
-  
-useEffect(() => {
-  const fetchStudentData = async () => {
-    const token = localStorage.getItem("token");
-    
-    if (!token) {
-      navigate("/login");
-      return;
-    }
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      const token = localStorage.getItem("token");
 
-    try {
-      // Using your existing API endpoint structure
-      const response = await axios.get("http://localhost:5000/api/students/me", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      
-      setStudent(response.data.student);
-      setLoading(false);
-    } catch (err) {
-      console.error("Error fetching student data:", err);
-      setError("Failed to load student information. Please try again.");
-      setLoading(false);
-      
-      // Redirect to login if unauthorized
-      if (err.response?.status === 401 || err.response?.status === 403) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
+      if (!token) {
         navigate("/login");
+        return;
       }
-    }
+
+      try {
+        // Using your existing API endpoint structure
+        const response = await axios.get("http://localhost:5000/api/students/me", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setStudent(response.data.student);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching student data:", err);
+        setError("Failed to load student information. Please try again.");
+        setLoading(false);
+
+        // Redirect to login if unauthorized
+        if (err.response?.status === 401 || err.response?.status === 403) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("role");
+          navigate("/login");
+        }
+      }
+    };
+
+    fetchStudentData();
+  }, [navigate]);
+
+  // Add this to your logout function in the dashboard:
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
   };
-
-  fetchStudentData();
-}, [navigate]);
-
-// Add this to your logout function in the dashboard:
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("role");
-  navigate("/login");
-};
 
   if (loading) {
     return (
@@ -154,57 +153,7 @@ const handleLogout = () => {
 
           {/* Content based on active tab */}
           <div className="p-6">
-            {activeTab === "profile" && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex flex-col md:flex-row gap-8">
-                  {/* Profile Image */}
-                  <div className="md:w-1/3 flex flex-col items-center">
-                    <div className="w-40 h-40 rounded-full overflow-hidden mb-4">
-                      <img 
-                        src={student?.avatar} 
-                        alt={student?.name} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h2 className="text-2xl font-bold text-center">{student?.name}</h2>
-                    <p className="text-gray-600 text-center">Admission #{student?.admissionNumber}</p>
-                    <p className="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-medium mt-2">
-                      Class {student?.class}-{student?.section}
-                    </p>
-                  </div>
-
-                  {/* Profile Details */}
-                  <div className="md:w-2/3">
-                    <h3 className="text-xl font-semibold mb-4">Personal Information</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <InfoItem label="Roll Number" value={student?.rollNumber} />
-                      <InfoItem label="Date of Birth" value={new Date(student?.dateOfBirth).toLocaleDateString()} />
-                      <InfoItem label="Gender" value={student?.gender} />
-                      <InfoItem label="Academic Year" value={student?.academicYear} />
-                      <InfoItem label="Date of Admission" value={new Date(student?.dateOfAdmission).toLocaleDateString()} />
-                      <InfoItem label="Religion" value={student?.religion} />
-                      <InfoItem label="Mobile Number" value={student?.mobileNumber} />
-                      <InfoItem label="Aadhar Number" value={student?.aadharCardNumber} />
-                    </div>
-
-                    <h3 className="text-xl font-semibold mt-6 mb-4">Parents Information</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <InfoItem label="Father's Name" value={student?.fathersName} />
-                      <InfoItem label="Father's Number" value={student?.fathersNumber} />
-                      <InfoItem label="Mother's Name" value={student?.mothersName} />
-                    </div>
-
-                    <h3 className="text-xl font-semibold mt-6 mb-4">Address</h3>
-                    <p className="text-gray-700">{student?.address}</p>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
+            {activeTab === "profile" && <ProfileTab student={student} />}
             {activeTab === "results" && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -358,11 +307,69 @@ const handleLogout = () => {
   );
 }
 
+// Profile Tab Component
+const ProfileTab = ({ student }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
+  >
+    <div className="flex flex-col md:flex-row gap-8">
+      {/* Profile Image */}
+      <div className="md:w-1/3 flex flex-col items-center">
+        <div className="w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-[#3E3E51] shadow-lg">
+          <img 
+            src={student?.avatar} 
+            alt={student?.name} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h2 className="text-2xl font-bold text-center">{student?.name}</h2>
+        <p className="text-gray-600 text-center">Admission #{student?.admissionNumber}</p>
+        <p className="bg-[#3E3E51] text-white px-4 py-1 rounded-full text-sm font-medium mt-2">
+          Class {student?.class}-{student?.section}
+        </p>
+      </div>
+
+      {/* Profile Details */}
+      <div className="md:w-2/3">
+        <div className="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-semibold mb-4 text-[#282834]">Personal Information</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <InfoItem label="Roll Number" value={student?.rollNumber} />
+            <InfoItem label="Date of Birth" value={new Date(student?.dateOfBirth).toLocaleDateString()} />
+            <InfoItem label="Gender" value={student?.gender} />
+            <InfoItem label="Academic Year" value={student?.academicYear} />
+            <InfoItem label="Date of Admission" value={new Date(student?.dateOfAdmission).toLocaleDateString()} />
+            <InfoItem label="Religion" value={student?.religion} />
+            <InfoItem label="Mobile Number" value={student?.mobileNumber} />
+            <InfoItem label="Aadhar Number" value={student?.aadharCardNumber} />
+          </div>
+        </div>
+
+        <div className="bg-gray-50 p-6 rounded-lg shadow-md mt-6">
+          <h3 className="text-xl font-semibold mb-4 text-[#282834]">Parents Information</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <InfoItem label="Father's Name" value={student?.fathersName} />
+            <InfoItem label="Father's Number" value={student?.fathersNumber} />
+            <InfoItem label="Mother's Name" value={student?.mothersName} />
+          </div>
+        </div>
+
+        <div className="bg-gray-50 p-6 rounded-lg shadow-md mt-6">
+          <h3 className="text-xl font-semibold mb-4 text-[#282834]">Address</h3>
+          <p className="text-gray-700">{student?.address}</p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 // Helper component for displaying info items
 const InfoItem = ({ label, value }) => (
   <div className="mb-2">
-    <p className="text-sm text-gray-500">{label}</p>
-    <p className="font-medium">{value || "Not provided"}</p>
+    <p className="text-sm text-gray-500 font-semibold">{label}</p>
+    <p className="font-medium text-gray-800">{value || "Not provided"}</p>
   </div>
 );
 

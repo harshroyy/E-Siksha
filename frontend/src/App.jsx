@@ -27,7 +27,8 @@ const ProtectedRoute = ({ children, allowedRole }) => {
 // Layout component to conditionally render Header and Footer
 const Layout = ({ children }) => {
   const location = useLocation();
-  const isDashboard = location.pathname.includes('-dashboard');
+  // Update this condition to check for both dashboard patterns
+  const isDashboard = location.pathname.includes('-dashboard') || location.pathname.includes('/teacher/');
   
   // Don't render Header/Footer for dashboard pages
   if (isDashboard) {
@@ -68,14 +69,23 @@ function App() {
             </ProtectedRoute>
           }
         />
+        
+        {/* Teacher Dashboard with nested routes */}
         <Route
-          path="/teacher-dashboard"
+          path="/teacher/*"
           element={
             <ProtectedRoute allowedRole="teacher">
               <TeacherDashboard />
             </ProtectedRoute>
           }
         />
+        
+        {/* Legacy route for backward compatibility */}
+        <Route
+          path="/teacher-dashboard"
+          element={<Navigate to="/teacher/dashboard" replace />}
+        />
+        
         <Route
           path="/admin-dashboard"
           element={

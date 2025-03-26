@@ -66,7 +66,7 @@ router.post("/students", authenticateToken, async (req, res) => {
 
     const {
       admissionNumber,
-      dateOfBirth, // Ensure this is included
+      dateOfBirth,
       name,
       aadharCardNumber,
       religion,
@@ -98,7 +98,7 @@ router.post("/students", authenticateToken, async (req, res) => {
     // Create a new student
     const student = new Student({
       admissionNumber,
-      dateOfBirth: new Date(dateOfBirth), // Ensure dateOfBirth is a valid Date object
+      dateOfBirth: new Date(dateOfBirth),
       name,
       aadharCardNumber,
       religion,
@@ -111,7 +111,7 @@ router.post("/students", authenticateToken, async (req, res) => {
       rollNumber,
       address,
       academicYear,
-      dateOfAdmission: new Date(dateOfAdmission), // Ensure dateOfAdmission is a valid Date object
+      dateOfAdmission: new Date(dateOfAdmission),
       mobileNumber,
       attendance,
     });
@@ -119,7 +119,7 @@ router.post("/students", authenticateToken, async (req, res) => {
 
     res.status(201).json({ message: "Student created successfully", student });
   } catch (error) {
-    console.error("Error creating student:", error); // Log the error
+    console.error("Error creating student:", error);
     res.status(500).json({ message: "Error creating student", error: error.message });
   }
 });
@@ -147,7 +147,7 @@ router.put("/students/:id", authenticateToken, async (req, res) => {
       dateOfAdmission,
       mobileNumber,
       attendance,
-      dateOfBirth, // Ensure this is included
+      dateOfBirth,
     } = req.body;
     const studentId = req.params.id;
 
@@ -171,10 +171,10 @@ router.put("/students/:id", authenticateToken, async (req, res) => {
         rollNumber,
         address,
         academicYear,
-        dateOfAdmission: new Date(dateOfAdmission), // Ensure dateOfAdmission is a valid Date object
+        dateOfAdmission: new Date(dateOfAdmission),
         mobileNumber,
         attendance,
-        dateOfBirth: new Date(dateOfBirth), // Ensure dateOfBirth is a valid Date object
+        dateOfBirth: new Date(dateOfBirth),
       },
       { new: true }
     );
@@ -185,11 +185,10 @@ router.put("/students/:id", authenticateToken, async (req, res) => {
 
     res.status(200).json({ message: "Student updated successfully", updatedStudent });
   } catch (error) {
-    console.error("Error updating student:", error); // Log the error
+    console.error("Error updating student:", error);
     res.status(500).json({ message: "Error updating student", error: error.message });
   }
 });
-
 
 // View student details (Teacher only)
 router.get("/students/:id", authenticateToken, async (req, res) => {
@@ -225,4 +224,28 @@ router.get("/students", authenticateToken, async (req, res) => {
   }
 });
 
+// Get Dashboard Stats
+router.get("/dashboard-stats", authenticateToken, async (req, res) => {
+  try {
+    // Check if user is a teacher
+    if (req.user.role !== "teacher") {
+      return res.status(403).json({ message: "Access denied. Only teachers can access this data." });
+    }
+
+    // Count total students
+    const totalStudents = await Student.countDocuments();
+    
+    // Count total announcements
+    const Announcement = require("../models/Announcements");
+    const announcements = await Announcement.countDocuments();
+
+    res.status(200).json({ 
+      totalStudents, 
+      announcements 
+    });
+  } catch (error) {
+    console.error("Error fetching dashboard stats:", error);
+    res.status(500).json({ message: "Error fetching dashboard stats", error });
+  }
+});
 module.exports = router;

@@ -18,10 +18,11 @@ dotenv.config();
 const connectDB = require("./conn/conn");
 connectDB();
 
-// Import Routes
-const adminRoutes = require("./routes/adminRoutes");
-const teacherRoutes = require("./routes/teacherRoutes");
+// Import routes
 const studentRoutes = require("./routes/studentRoutes");
+const teacherRoutes = require("./routes/teacherRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const announcementRoutes = require("./routes/announcementRoutes");
 
 // Test Route
 app.get("/", (req, res) => {
@@ -29,9 +30,10 @@ app.get("/", (req, res) => {
 });
 
 // Mount Routes
-app.use("/api/admins", adminRoutes); // Admin-specific routes
-app.use("/api/teachers", teacherRoutes); // Teacher-specific routes
-app.use("/api/students", studentRoutes); // Student-specific routes
+app.use("/api/admins", adminRoutes);
+app.use("/api/teachers", teacherRoutes);
+app.use("/api/students", studentRoutes);
+app.use("/api/announcements", announcementRoutes);
 
 // Start the Server
 const PORT = process.env.PORT;

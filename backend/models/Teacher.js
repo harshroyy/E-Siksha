@@ -1,4 +1,3 @@
-// Teacher.js
 const mongoose = require("mongoose");
 
 const teacherSchema = new mongoose.Schema(
@@ -25,8 +24,25 @@ const teacherSchema = new mongoose.Schema(
       enum: ["Male", "Female", "Other"],
       required: true,
     },
-    subjectSpecialization: {
+    dateOfBirth: {
+      type: Date,
+      required: true,
+    },
+    aadharNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    appointedSubject: {
       type: [String],
+      required: true,
+    },
+    classAppointed: {
+      type: String,
+      required: true,
+    },
+    dateOfJoining: {
+      type: Date,
       required: true,
     },
     contactNumber: {
